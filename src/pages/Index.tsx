@@ -96,13 +96,12 @@ export default function Index() {
       {/* Header */}
       <header className="fixed top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container flex h-16 items-center justify-between">
-          <a href="#top" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary glow">
-              <Icon name="Anchor" size={20} className="text-primary-foreground" />
-            </div>
-            <span className="font-display text-xl font-bold tracking-wide">
-              МАРИНА<span className="text-primary">ПАУЭР</span>
-            </span>
+          <a href="#top">
+            <img
+              src="https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/bucket/42127df9-7ae0-41b2-8543-b94859f9e8f0.png"
+              alt="MarinePower"
+              className="h-8 w-auto"
+            />
           </a>
           <nav className="hidden items-center gap-7 lg:flex">
             {NAV.map((n) => (
