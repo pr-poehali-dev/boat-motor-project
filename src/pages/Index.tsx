@@ -71,6 +71,14 @@ export default function Index() {
   const [volume, setVolume] = useState<[number]>([1500]);
   const [price, setPrice] = useState<[number]>([600000]);
 
+  const [form, setForm] = useState({ name: '', phone: '', comment: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
   const filtered = useMemo(
     () =>
       MOTORS.filter(
@@ -712,43 +720,108 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Contacts / CTA */}
-      <section id="contacts" className="border-t border-border bg-secondary/20 py-16">
+      {/* Contact form */}
+      <section id="contacts" className="border-t border-border bg-secondary/20 py-16 md:py-20">
         <div className="container">
-          <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-card p-10 text-center md:p-16">
-            <div className="absolute inset-0 grid-bg opacity-30" />
-            <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-primary/20 blur-[100px]" />
-            <div className="relative">
-              <h2 className="font-display text-4xl font-bold uppercase md:text-5xl">
-                Готовы выйти на воду?
-              </h2>
-              <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-                Оставьте заявку — подберём мотор под вашу лодку и рассчитаем доставку.
-              </p>
-              <div className="mx-auto mt-8 flex max-w-md flex-col gap-4 sm:flex-row">
-                <Button size="lg" className="flex-1 font-display tracking-wide">
-                  <Icon name="Phone" size={18} className="mr-2" />
-                  ПОЗВОНИТЬ
-                </Button>
-                <Button size="lg" variant="outline" className="flex-1 font-display tracking-wide">
-                  <Icon name="MessageCircle" size={18} className="mr-2" />
-                  НАПИСАТЬ
-                </Button>
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-12 md:grid-cols-2 items-start">
+
+              {/* Left — headline */}
+              <div className="md:sticky md:top-24">
+                <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+                  Заявка
+                </span>
+                <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+                  Подберём мотор за 15 минут
+                </h2>
+                <p className="mt-5 text-muted-foreground leading-relaxed">
+                  Расскажите о своём плавсредстве — и мы подберём оптимальную модель с учётом
+                  бюджета и задач. Бесплатно. Без обязательств.
+                </p>
+                <div className="mt-8 space-y-4">
+                  <a href="tel:+79841885391" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="Phone" size={18} className="text-primary" />
+                    </div>
+                    <span>+7 (984) 188-53-91</span>
+                  </a>
+                  <a href="https://t.me/MarinePower" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="Send" size={18} className="text-primary" />
+                    </div>
+                    <span>Telegram: @MarinePower</span>
+                  </a>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="MapPin" size={18} className="text-primary" />
+                    </div>
+                    <span>Владивосток, самовывоз и доставка по Приморскому краю</span>
+                  </div>
+                </div>
               </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                <span className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} className="text-primary" />
-                  +7 (800) 555-35-35
-                </span>
-                <span className="flex items-center gap-2">
-                  <Icon name="Mail" size={16} className="text-primary" />
-                  info@marinapower.ru
-                </span>
-                <span className="flex items-center gap-2">
-                  <Icon name="MapPin" size={16} className="text-primary" />
-                  Москва, ул. Портовая, 12
-                </span>
+
+              {/* Right — form */}
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8">
+                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/15 blur-3xl" />
+                {sent ? (
+                  <div className="relative flex flex-col items-center justify-center py-10 text-center">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/15">
+                      <Icon name="CheckCircle" size={36} className="text-primary" />
+                    </div>
+                    <h3 className="font-display text-2xl font-bold uppercase">Заявка принята!</h3>
+                    <p className="mt-3 text-muted-foreground">Перезвоним в течение 15 минут в рабочее время.</p>
+                    <Button className="mt-6" variant="outline" onClick={() => setSent(false)}>
+                      Отправить ещё
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="relative space-y-5">
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">Ваше имя</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="Александр"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        className="w-full rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">Номер телефона</label>
+                      <input
+                        required
+                        type="tel"
+                        placeholder="+7 (___) ___-__-__"
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        className="w-full rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">
+                        Комментарий <span className="text-muted-foreground/50">(необязательно)</span>
+                      </label>
+                      <textarea
+                        rows={3}
+                        placeholder="Катер 6м, рыбалка, бюджет до 400 тыс."
+                        value={form.comment}
+                        onChange={(e) => setForm({ ...form, comment: e.target.value })}
+                        className="w-full resize-none rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <Button type="submit" size="lg" className="w-full h-13 text-base font-display tracking-wide">
+                      <Icon name="Flame" size={20} className="mr-2" />
+                      ПОЛУЧИТЬ БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ
+                    </Button>
+                    <p className="flex items-start gap-2 text-xs text-muted-foreground/70 leading-relaxed">
+                      <Icon name="Lock" size={14} className="mt-0.5 shrink-0 text-muted-foreground/50" />
+                      Никакого спама. Звоним только для подбора мотора. Данные не передаём третьим лицам.
+                    </p>
+                  </form>
+                )}
               </div>
+
             </div>
           </div>
         </div>
