@@ -250,7 +250,7 @@ export default function Index() {
                 </div>
                 <h3 className="font-display text-xl font-bold uppercase">Прямые поставки с заводов</h3>
                 <p className="mt-3 text-muted-foreground">
-                  Работаем напрямую с производителями Hidea и Huachai Power (Хэбэй).
+                  Работаем напрямую с производителями Hidea (Ханчжоу) и Huachai Power (Хэбэй).
                   Никаких московских посредников —{' '}
                   <span className="font-semibold text-primary">цена на 30–40% ниже рынка.</span>
                 </p>
@@ -262,7 +262,7 @@ export default function Index() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15">
                 <Icon name="PackageCheck" size={26} className="text-accent" />
               </div>
-              <h3 className="font-display text-xl font-bold uppercase">В наличии во Владивостоке</h3>
+              <h3 className="font-display text-xl font-bold uppercase">В наличии и под заказ во Владивостоке</h3>
               <p className="mt-3 text-muted-foreground">
                 Склад в городе. Забрать самовывозом или доставка по Приморскому краю{' '}
                 <span className="font-semibold text-foreground">в течение 1–2 дней.</span>
