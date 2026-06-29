@@ -297,11 +297,102 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Catalog with filters */}
-      <section id="catalog" className="container py-16">
-        <div className="mb-10">
+      {/* Featured models */}
+      <section id="catalog" className="container py-16 md:py-20">
+        <div className="mb-10 text-center">
           <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
             Каталог
+          </span>
+          <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+            Популярные модели — в наличии
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+          {/* Hidea EF200 */}
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-card flex flex-col">
+            <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-secondary to-background">
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground uppercase tracking-wide">
+                Бензин
+              </span>
+              <img
+                src="https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/076279aa-0ee2-4a78-a2c0-a4e4fcaa4ad6.jpg"
+                alt="Hidea EF200"
+                className="h-52 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
+              <div className="text-xs text-muted-foreground uppercase tracking-widest font-display">Hidea</div>
+              <h3 className="mt-1 font-display text-2xl font-bold uppercase">EF200</h3>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {['4-такт', '200 л.с.', 'Бензиновый'].map((tag) => (
+                  <span key={tag} className="rounded-lg border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto pt-6">
+                <Button size="lg" className="w-full font-display tracking-wide" asChild>
+                  <a href="#contacts">
+                    Узнать подробнее
+                    <Icon name="ArrowRight" size={18} className="ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Huachai Power 110 */}
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-card flex flex-col">
+            <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-secondary to-background">
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground uppercase tracking-wide">
+                Дизель
+              </span>
+              <img
+                src="https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/29b1ca2c-0315-48e0-bf8e-b2cfe6deeda8.jpg"
+                alt="Huachai Power 110"
+                className="h-52 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
+              <div className="text-xs text-muted-foreground uppercase tracking-widest font-display">Huachai Power</div>
+              <h3 className="mt-1 font-display text-2xl font-bold uppercase">110</h3>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {['4-такт', '110 л.с.', 'Дизельный'].map((tag) => (
+                  <span key={tag} className="rounded-lg border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto pt-6">
+                <Button size="lg" variant="outline" className="w-full font-display tracking-wide" asChild>
+                  <a href="#contacts">
+                    Узнать подробнее
+                    <Icon name="ArrowRight" size={18} className="ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button size="lg" variant="outline" className="h-14 px-10 font-display tracking-wide" asChild>
+            <a href="#contacts">
+              <Icon name="LayoutGrid" size={18} className="mr-2" />
+              СМОТРЕТЬ ПОЛНЫЙ КАТАЛОГ
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Filter catalog */}
+      <section className="container pb-16">
+        <div className="mb-10">
+          <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+            Подбор по параметрам
           </span>
           <h2 className="font-display text-4xl font-bold uppercase md:text-5xl">
             Подберите свой мотор
