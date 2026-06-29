@@ -71,6 +71,14 @@ export default function Index() {
   const [volume, setVolume] = useState<[number]>([1500]);
   const [price, setPrice] = useState<[number]>([600000]);
 
+  const [form, setForm] = useState({ name: '', phone: '', comment: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
   const filtered = useMemo(
     () =>
       MOTORS.filter(
@@ -297,11 +305,102 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Catalog with filters */}
-      <section id="catalog" className="container py-16">
-        <div className="mb-10">
+      {/* Featured models */}
+      <section id="catalog" className="container py-16 md:py-20">
+        <div className="mb-10 text-center">
           <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
             Каталог
+          </span>
+          <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+            Популярные модели — в наличии
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+          {/* Hidea EF200 */}
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-card flex flex-col">
+            <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-secondary to-background">
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground uppercase tracking-wide">
+                Бензин
+              </span>
+              <img
+                src="https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/076279aa-0ee2-4a78-a2c0-a4e4fcaa4ad6.jpg"
+                alt="Hidea EF200"
+                className="h-52 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
+              <div className="text-xs text-muted-foreground uppercase tracking-widest font-display">Hidea</div>
+              <h3 className="mt-1 font-display text-2xl font-bold uppercase">EF200</h3>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {['4-такт', '200 л.с.', 'Бензиновый'].map((tag) => (
+                  <span key={tag} className="rounded-lg border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto pt-6">
+                <Button size="lg" className="w-full font-display tracking-wide" asChild>
+                  <a href="#contacts">
+                    Узнать подробнее
+                    <Icon name="ArrowRight" size={18} className="ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Huachai Power 110 */}
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-card flex flex-col">
+            <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-secondary to-background">
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground uppercase tracking-wide">
+                Дизель
+              </span>
+              <img
+                src="https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/29b1ca2c-0315-48e0-bf8e-b2cfe6deeda8.jpg"
+                alt="Huachai Power 110"
+                className="h-52 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
+              <div className="text-xs text-muted-foreground uppercase tracking-widest font-display">Huachai Power</div>
+              <h3 className="mt-1 font-display text-2xl font-bold uppercase">110</h3>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {['4-такт', '110 л.с.', 'Дизельный'].map((tag) => (
+                  <span key={tag} className="rounded-lg border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto pt-6">
+                <Button size="lg" variant="outline" className="w-full font-display tracking-wide" asChild>
+                  <a href="#contacts">
+                    Узнать подробнее
+                    <Icon name="ArrowRight" size={18} className="ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button size="lg" variant="outline" className="h-14 px-10 font-display tracking-wide" asChild>
+            <a href="#contacts">
+              <Icon name="LayoutGrid" size={18} className="mr-2" />
+              СМОТРЕТЬ ПОЛНЫЙ КАТАЛОГ
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Filter catalog */}
+      <section className="container pb-16">
+        <div className="mb-10">
+          <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+            Подбор по параметрам
           </span>
           <h2 className="font-display text-4xl font-bold uppercase md:text-5xl">
             Подберите свой мотор
@@ -546,23 +645,51 @@ export default function Index() {
           Отзывы
         </span>
         <h2 className="mb-10 font-display text-4xl font-bold uppercase md:text-5xl">
-          Что говорят клиенты
+          Нам доверяют рыбаки Приморья
         </h2>
+
+        {/* Trust stats row */}
+        <div className="mb-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[
+            { v: '120+', l: 'Моторов продано' },
+            { v: '3 года', l: 'На рынке Приморья' },
+            { v: '12 мес', l: 'Гарантия на всё' },
+            { v: '1–2 дня', l: 'Доставка по краю' },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl border border-border bg-card p-5 text-center">
+              <div className="font-display text-3xl font-bold text-primary">{s.v}</div>
+              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            { n: 'Сергей К.', t: 'Рыбак', r: 'Взял SeaForce X40 — мотор тянет отлично, второй сезон без нареканий. Доставили быстро.' },
-            { n: 'Андрей М.', t: 'Капитан катера', r: 'Дизельный D30 экономичный и надёжный. Сервис помог с обкаткой, всё объяснили.' },
-            { n: 'Игорь П.', t: 'База отдыха', r: 'Закупили 4 мотора для проката. Цена адекватная, гарантия работает. Рекомендую.' },
+            {
+              n: 'Сергей К.',
+              t: 'пос. Трудовое',
+              r: 'Брал Hidea EF150 весной. Сезон отходил — ни одной проблемы. Документы дали сразу, в ГИМС встали без вопросов. Спасибо ребятам, буду рекомендовать.',
+            },
+            {
+              n: 'Алексей М.',
+              t: 'Находка',
+              r: 'Сравнивал с Yamaha — разница в цене 160 тысяч рублей. Взял Huachai Power 60 л.с., уже второй сезон катаюсь. Качество на уровне.',
+            },
+            {
+              n: 'Виктор Д.',
+              t: 'Владивосток',
+              r: 'Оперативно подобрали мотор под мой катер 9 метров. Привезли на следующий день. Всё честно, без разводов.',
+            },
           ].map((rv) => (
-            <div key={rv.n} className="rounded-2xl border border-border bg-card p-6">
-              <div className="mb-3 flex gap-1 text-primary">
+            <div key={rv.n} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+              <div className="mb-3 flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Icon key={i} name="Star" size={16} className="fill-primary" />
+                  <Icon key={i} name="Star" size={16} className="fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-muted-foreground">«{rv.r}»</p>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 font-display text-primary">
+              <p className="flex-1 text-muted-foreground leading-relaxed">«{rv.r}»</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/15 font-display font-bold text-primary">
                   {rv.n[0]}
                 </div>
                 <div>
@@ -593,43 +720,108 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Contacts / CTA */}
-      <section id="contacts" className="border-t border-border bg-secondary/20 py-16">
+      {/* Contact form */}
+      <section id="contacts" className="border-t border-border bg-secondary/20 py-16 md:py-20">
         <div className="container">
-          <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-card p-10 text-center md:p-16">
-            <div className="absolute inset-0 grid-bg opacity-30" />
-            <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-primary/20 blur-[100px]" />
-            <div className="relative">
-              <h2 className="font-display text-4xl font-bold uppercase md:text-5xl">
-                Готовы выйти на воду?
-              </h2>
-              <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-                Оставьте заявку — подберём мотор под вашу лодку и рассчитаем доставку.
-              </p>
-              <div className="mx-auto mt-8 flex max-w-md flex-col gap-4 sm:flex-row">
-                <Button size="lg" className="flex-1 font-display tracking-wide">
-                  <Icon name="Phone" size={18} className="mr-2" />
-                  ПОЗВОНИТЬ
-                </Button>
-                <Button size="lg" variant="outline" className="flex-1 font-display tracking-wide">
-                  <Icon name="MessageCircle" size={18} className="mr-2" />
-                  НАПИСАТЬ
-                </Button>
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-12 md:grid-cols-2 items-start">
+
+              {/* Left — headline */}
+              <div className="md:sticky md:top-24">
+                <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+                  Заявка
+                </span>
+                <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+                  Подберём мотор за 15 минут
+                </h2>
+                <p className="mt-5 text-muted-foreground leading-relaxed">
+                  Расскажите о своём плавсредстве — и мы подберём оптимальную модель с учётом
+                  бюджета и задач. Бесплатно. Без обязательств.
+                </p>
+                <div className="mt-8 space-y-4">
+                  <a href="tel:+79841885391" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="Phone" size={18} className="text-primary" />
+                    </div>
+                    <span>+7 (984) 188-53-91</span>
+                  </a>
+                  <a href="https://t.me/MarinePower" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="Send" size={18} className="text-primary" />
+                    </div>
+                    <span>Telegram: @MarinePower</span>
+                  </a>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+                      <Icon name="MapPin" size={18} className="text-primary" />
+                    </div>
+                    <span>Владивосток, самовывоз и доставка по Приморскому краю</span>
+                  </div>
+                </div>
               </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                <span className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} className="text-primary" />
-                  +7 (800) 555-35-35
-                </span>
-                <span className="flex items-center gap-2">
-                  <Icon name="Mail" size={16} className="text-primary" />
-                  info@marinapower.ru
-                </span>
-                <span className="flex items-center gap-2">
-                  <Icon name="MapPin" size={16} className="text-primary" />
-                  Москва, ул. Портовая, 12
-                </span>
+
+              {/* Right — form */}
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8">
+                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/15 blur-3xl" />
+                {sent ? (
+                  <div className="relative flex flex-col items-center justify-center py-10 text-center">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/15">
+                      <Icon name="CheckCircle" size={36} className="text-primary" />
+                    </div>
+                    <h3 className="font-display text-2xl font-bold uppercase">Заявка принята!</h3>
+                    <p className="mt-3 text-muted-foreground">Перезвоним в течение 15 минут в рабочее время.</p>
+                    <Button className="mt-6" variant="outline" onClick={() => setSent(false)}>
+                      Отправить ещё
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="relative space-y-5">
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">Ваше имя</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="Александр"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        className="w-full rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">Номер телефона</label>
+                      <input
+                        required
+                        type="tel"
+                        placeholder="+7 (___) ___-__-__"
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        className="w-full rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-sm text-muted-foreground">
+                        Комментарий <span className="text-muted-foreground/50">(необязательно)</span>
+                      </label>
+                      <textarea
+                        rows={3}
+                        placeholder="Катер 6м, рыбалка, бюджет до 400 тыс."
+                        value={form.comment}
+                        onChange={(e) => setForm({ ...form, comment: e.target.value })}
+                        className="w-full resize-none rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <Button type="submit" size="lg" className="w-full h-13 text-base font-display tracking-wide">
+                      <Icon name="Flame" size={20} className="mr-2" />
+                      ПОЛУЧИТЬ БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ
+                    </Button>
+                    <p className="flex items-start gap-2 text-xs text-muted-foreground/70 leading-relaxed">
+                      <Icon name="Lock" size={14} className="mt-0.5 shrink-0 text-muted-foreground/50" />
+                      Никакого спама. Звоним только для подбора мотора. Данные не передаём третьим лицам.
+                    </p>
+                  </form>
+                )}
               </div>
+
             </div>
           </div>
         </div>
