@@ -12,6 +12,15 @@ import {
 const MOTOR_IMG =
   'https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/da41c444-5389-4e8d-a057-5309703b036f.jpg';
 
+const HERO_IMG =
+  'https://cdn.poehali.dev/projects/35468fdc-5d08-4e60-9fd8-3e93ef4c449c/files/698a9dd3-618b-452c-a7a2-7e6dba2db73e.jpg';
+
+const TRUST = [
+  { icon: 'BadgeCheck', text: 'Сертифицированный товар' },
+  { icon: 'Truck', text: 'Доставка по Приморскому краю' },
+  { icon: 'Wrench', text: 'Гарантийное обслуживание' },
+];
+
 const NAV = [
   { label: 'Каталог', href: '#catalog' },
   { label: 'Характеристики', href: '#specs' },
@@ -104,45 +113,48 @@ export default function Index() {
 
       {/* Hero */}
       <section id="top" className="relative overflow-hidden pt-16">
-        <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="absolute -right-40 top-20 h-96 w-96 rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full bg-accent/20 blur-[120px]" />
-        <div className="container relative grid items-center gap-10 py-20 md:grid-cols-2 md:py-28">
-          <div className="animate-fade-in">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm text-primary">
+        <div className="absolute inset-0">
+          <img
+            src={HERO_IMG}
+            alt="Катер на Японском море"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        </div>
+        <div className="container relative grid items-center gap-10 py-24 md:py-32">
+          <div className="max-w-3xl animate-fade-in">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm text-primary backdrop-blur-sm">
               <Icon name="Zap" size={14} />
-              Подвесные моторы из Китая
+              Hidea · Huachai Power — от 60 до 200 л.с.
             </div>
-            <h1 className="font-display text-5xl font-bold uppercase leading-[0.95] md:text-7xl">
-              Мощность,
+            <h1 className="font-display text-4xl font-bold uppercase leading-[0.98] md:text-6xl lg:text-7xl">
+              Японские мощности.
               <br />
-              что движет
+              <span className="text-primary">Китайская цена.</span>
               <br />
-              <span className="text-primary">волну</span>
+              Доставка во Владивосток за 7 дней.
             </h1>
-            <p className="mt-6 max-w-md text-lg text-muted-foreground">
-              Бензиновые и дизельные лодочные моторы от 5 до 90 л.с. с заводской
-              гарантией и доставкой по всей России.
+            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+              Подвесные лодочные моторы Hidea, Huachai Power — от 60 до 200 л.с.
+              Гарантия 1 год. Запчасти в наличии и под заказ.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button size="lg" className="font-display tracking-wide" asChild>
-                <a href="#catalog">
-                  <Icon name="Search" size={18} className="mr-2" />
-                  СМОТРЕТЬ КАТАЛОГ
+            <div className="mt-8">
+              <Button size="lg" className="h-14 px-8 text-base font-display tracking-wide" asChild>
+                <a href="#contacts">
+                  <Icon name="Target" size={20} className="mr-2" />
+                  ПОДОБРАТЬ МОТОР БЕСПЛАТНО
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="font-display tracking-wide" asChild>
-                <a href="#contacts">КОНСУЛЬТАЦИЯ</a>
-              </Button>
             </div>
-          </div>
-          <div className="relative flex justify-center animate-scale-in">
-            <div className="absolute h-72 w-72 rounded-full bg-primary/30 blur-3xl md:h-96 md:w-96" />
-            <img
-              src={MOTOR_IMG}
-              alt="Лодочный мотор"
-              className="relative z-10 w-72 animate-float drop-shadow-2xl md:w-96"
-            />
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+              {TRUST.map((t) => (
+                <span key={t.text} className="flex items-center gap-2 text-sm text-foreground/90">
+                  <Icon name={t.icon} size={18} className="text-primary" />
+                  {t.text}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
