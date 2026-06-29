@@ -174,6 +174,42 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Pain block */}
+      <section className="container py-16 md:py-20">
+        <div className="mx-auto max-w-3xl">
+          <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+            Понимаем вас
+          </span>
+          <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+            Знакомо?
+          </h2>
+          <div className="mt-8 space-y-4">
+            {[
+              'Японские моторы подорожали в десятки раз — Yamaha и Suzuki теперь стоят как авто из салона',
+              'Б/у мотор — это лотерея: купишь чужую проблему',
+              'Везти из Москвы долго и дорого — а местные магазины держат завышенные цены',
+              'Не знаешь, какой мотор подойдёт под твой катер и задачи',
+            ].map((pain) => (
+              <div
+                key={pain}
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/30"
+              >
+                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-destructive/15">
+                  <Icon name="X" size={16} className="text-destructive" />
+                </div>
+                <p className="text-base leading-snug">{pain}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 rounded-2xl border border-primary/40 bg-primary/8 p-6">
+            <p className="text-lg font-medium leading-snug">
+              Мы решили эту проблему для любителей отдыха на катере{' '}
+              <span className="text-primary">Владивостока и всего Приморья.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="container grid grid-cols-2 gap-6 py-16 md:grid-cols-4">
         {STATS.map((s) => (
