@@ -637,23 +637,51 @@ export default function Index() {
           Отзывы
         </span>
         <h2 className="mb-10 font-display text-4xl font-bold uppercase md:text-5xl">
-          Что говорят клиенты
+          Нам доверяют рыбаки Приморья
         </h2>
+
+        {/* Trust stats row */}
+        <div className="mb-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[
+            { v: '120+', l: 'Моторов продано' },
+            { v: '3 года', l: 'На рынке Приморья' },
+            { v: '12 мес', l: 'Гарантия на всё' },
+            { v: '1–2 дня', l: 'Доставка по краю' },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl border border-border bg-card p-5 text-center">
+              <div className="font-display text-3xl font-bold text-primary">{s.v}</div>
+              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            { n: 'Сергей К.', t: 'Рыбак', r: 'Взял SeaForce X40 — мотор тянет отлично, второй сезон без нареканий. Доставили быстро.' },
-            { n: 'Андрей М.', t: 'Капитан катера', r: 'Дизельный D30 экономичный и надёжный. Сервис помог с обкаткой, всё объяснили.' },
-            { n: 'Игорь П.', t: 'База отдыха', r: 'Закупили 4 мотора для проката. Цена адекватная, гарантия работает. Рекомендую.' },
+            {
+              n: 'Сергей К.',
+              t: 'пос. Трудовое',
+              r: 'Брал Hidea EF150 весной. Сезон отходил — ни одной проблемы. Документы дали сразу, в ГИМС встали без вопросов. Спасибо ребятам, буду рекомендовать.',
+            },
+            {
+              n: 'Алексей М.',
+              t: 'Находка',
+              r: 'Сравнивал с Yamaha — разница в цене 160 тысяч рублей. Взял Huachai Power 60 л.с., уже второй сезон катаюсь. Качество на уровне.',
+            },
+            {
+              n: 'Виктор Д.',
+              t: 'Владивосток',
+              r: 'Оперативно подобрали мотор под мой катер 9 метров. Привезли на следующий день. Всё честно, без разводов.',
+            },
           ].map((rv) => (
-            <div key={rv.n} className="rounded-2xl border border-border bg-card p-6">
-              <div className="mb-3 flex gap-1 text-primary">
+            <div key={rv.n} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+              <div className="mb-3 flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Icon key={i} name="Star" size={16} className="fill-primary" />
+                  <Icon key={i} name="Star" size={16} className="fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-muted-foreground">«{rv.r}»</p>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 font-display text-primary">
+              <p className="flex-1 text-muted-foreground leading-relaxed">«{rv.r}»</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/15 font-display font-bold text-primary">
                   {rv.n[0]}
                 </div>
                 <div>
