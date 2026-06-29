@@ -220,6 +220,83 @@ export default function Index() {
         ))}
       </section>
 
+      {/* Solution block */}
+      <section className="border-y border-border bg-secondary/20 py-16 md:py-20">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+              Наше решение
+            </span>
+            <h2 className="mt-2 font-display text-4xl font-bold uppercase md:text-5xl">
+              Моторы напрямую с заводов Китая — без переплаты посредникам
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {/* Карточка 1 — широкая акцентная */}
+            <div className="relative overflow-hidden rounded-3xl border border-primary/40 bg-primary/10 p-8">
+              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
+              <div className="relative">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
+                  <Icon name="Factory" size={26} className="text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold uppercase">Прямые поставки с заводов</h3>
+                <p className="mt-3 text-muted-foreground">
+                  Работаем напрямую с производителями Hidea и Huachai Power (Хэбэй).
+                  Никаких московских посредников —{' '}
+                  <span className="font-semibold text-primary">цена на 30–40% ниже рынка.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Карточка 2 */}
+            <div className="rounded-3xl border border-border bg-card p-8">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15">
+                <Icon name="PackageCheck" size={26} className="text-accent" />
+              </div>
+              <h3 className="font-display text-xl font-bold uppercase">В наличии во Владивостоке</h3>
+              <p className="mt-3 text-muted-foreground">
+                Склад в городе. Забрать самовывозом или доставка по Приморскому краю{' '}
+                <span className="font-semibold text-foreground">в течение 1–2 дней.</span>
+              </p>
+            </div>
+
+            {/* Карточка 3 */}
+            <div className="rounded-3xl border border-border bg-card p-8">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15">
+                <Icon name="FileCheck" size={26} className="text-accent" />
+              </div>
+              <h3 className="font-display text-xl font-bold uppercase">Белая схема. Официальные документы</h3>
+              <p className="mt-3 text-muted-foreground">
+                Сертификаты соответствия ТР ТС 026/2012. Договор купли-продажи с печатью.{' '}
+                <span className="font-semibold text-foreground">Документы для регистрации в ГИМС.</span>
+              </p>
+            </div>
+
+            {/* Карточка 4 */}
+            <div className="rounded-3xl border border-border bg-card p-8">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
+                <Icon name="Wrench" size={26} className="text-primary" />
+              </div>
+              <h3 className="font-display text-xl font-bold uppercase">Гарантия и запчасти</h3>
+              <p className="mt-3 text-muted-foreground">
+                Гарантия 12 месяцев. Свой склад запчастей. Сервис и гарантийный ремонт в городе —{' '}
+                <span className="font-semibold text-foreground">не нужно отправлять мотор в другой регион.</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button size="lg" className="h-14 px-10 text-base font-display tracking-wide" asChild>
+              <a href="#contacts">
+                <Icon name="Target" size={20} className="mr-2" />
+                УЗНАТЬ ЦЕНУ НА МОЙ МОТОР
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Catalog with filters */}
       <section id="catalog" className="container py-16">
         <div className="mb-10">
